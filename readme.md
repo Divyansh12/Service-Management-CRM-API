@@ -137,28 +137,17 @@ SECRET=<Your Secret>
   - To get details of a particular event.
   - To delete event details.
 
+#### To create and manage events By Support
+- `/api/v1/support/event/`
+  - _Allowed Methods_ : `GET`
+  - `Authorisation`: `Bearer <token>` 
+  - _Permissions_ : ` Support Team Member`
+  - To get details of all event assigned to them.
 
-
-
-
-
-
-
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+- `/api/v1/support/event/{id}/`
+  - _Allowed Methods_ : `GET, PUT, PATCH, DELETE`
+  - `Authorisation`: `Bearer <token>` 
+  - _Permissions_ : ` Support Team Member`
+  - To edit event details assigned to them.
+  - To get details of a particular event assigned to them.
+  - To delete event details assigned to them.

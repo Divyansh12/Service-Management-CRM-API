@@ -107,13 +107,63 @@ class EventViewSet(CommonViewSet):
     def perform_update(self,serializer):
         print(self.request.data)
         try: 
-            support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True)
-            print(support)
+            support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True,archived=False)
+
+            try:
+                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+            
+                serializer.save(support_contact=support, contract=contract)
+            except:
+                print("Contract not provided") 
             # if(support == None):
             #     return Response({"details":"User is not Support Staff"})
-            serializer.save(support_contact=support)
+                serializer.save(support_contact=support)
         except:
             print("Support Contact Not provided")
+            try:
+                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+            
+                serializer.save(contract=contract)
+            except:
+                print("Contract not provided")
+            
+        finally:
+            serializer.save()
+
+
+
+class SupportEventViewSet(CommonViewSet):
+    
+    permission_classes=[
+        IsSupport
+    ]
+    serializer_class = EventSerializer
+    http_method_names = ['get', 'head', 'put', 'patch', 'delete']
+
+    def get_queryset(self):
+        return  self.request.user.Support_Events.filter(archived=False)   
+    def perform_update(self,serializer):
+        print(self.request.data)
+        try: 
+            support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True,archived=False)
+
+            try:
+                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+            
+                serializer.save(support_contact=support, contract=contract)
+            except:
+                print("Contract not provided") 
+            # if(support == None):
+            #     return Response({"details":"User is not Support Staff"})
+                serializer.save(support_contact=support)
+        except:
+            print("Support Contact Not provided")
+            try:
+                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+            
+                serializer.save(contract=contract)
+            except:
+                print("Contract not provided")
             
         finally:
             serializer.save()

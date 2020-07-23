@@ -10,7 +10,7 @@ from django.contrib.auth.password_validation import validate_password
 class EventSerializer(serializers.ModelSerializer):
     sales_contact = UserSerializer(read_only=True)
     support_contact = UserSerializer(read_only=True)
-    contract= ContractSerializer(allow_null=True)
+    contract= ContractSerializer(read_only=True,allow_null=True)
     class Meta:
         model=Events
         fields='__all__'
