@@ -151,3 +151,7 @@ SECRET=<Your Secret>
   - To edit event details assigned to them.
   - To get details of a particular event assigned to them.
   - To delete event details assigned to them.
+
+## Postman Collection 
+
+_link_ : https://www.getpostman.com/collections/aeed6ed66557d456aebf
