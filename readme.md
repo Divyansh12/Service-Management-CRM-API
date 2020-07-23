@@ -137,7 +137,7 @@ SECRET=<Your Secret>
   - To get details of a particular event.
   - To delete event details.
 
-#### To create and manage events By Support
+#### To manage events By Support
 - `/api/v1/support/event/`
   - _Allowed Methods_ : `GET`
   - `Authorisation`: `Bearer <token>` 
