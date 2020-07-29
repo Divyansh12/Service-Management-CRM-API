@@ -2,7 +2,7 @@
 
 ### Setup
 
-- Download postgreSQL from https://www.postgresql.org/download/
+- Download postgreSQL from https://www.postgresql.org/download/ .
 - Setup postgres Database by using psql command line.
 - Get the Database Credentials.
 - Create a ```.env``` file in the project folder. 
