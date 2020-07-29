@@ -1,6 +1,10 @@
 # CRM
 
 ### Setup
+
+- Download postgreSQL from https://www.postgresql.org/download/
+- Setup postgres Database by using psql command line.
+- Get the Database Credentials.
 - Create a ```.env``` file in the project folder. 
 
 ```
@@ -12,6 +16,11 @@ DB_HOST=localhost
 DB_PORT=5432
 SECRET=<Your Secret>
 ```
+  > Note : If no Database credentials are supplied db.sqlite3 will be used.
+  ```
+  DEBUG=True
+  SECRET=<Your Secret>
+  ```
 - Use ` pip install -r requirements.txt` to install all the dependency for the project.
 - Migrate the database by ` python manage.py migrate` 
 - Create Super User for the project using ` python manage.py createsuperuser`
