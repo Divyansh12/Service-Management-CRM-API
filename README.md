@@ -1,4 +1,8 @@
-# CRM
+# Service Management - CRM API
+
+### About
+
+API to manage the customers realtionship which purchase any service from a company. The sales team can create a contract for cutomer and assign the required service/s to the contract. And support team can contact the customer provide support realted to that contact.
 
 ### Setup
 
@@ -119,50 +123,45 @@ SECRET=<Your Secret>
   - To get details of a particular contract.
   - To delete contract details.
   
-#### To create and manage events
-- `/api/v1/manage/event/`
+#### To create and manage services
+- `/api/v1/manage/service/`
   - _Allowed Methods_ : `GET`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Management Team Member`
-  - To get all the events details by management.
+  - To get all the services details by management.
 
-- `/api/v1/manage/event/{id}/`
+- `/api/v1/manage/service/{id}/`
   - _Allowed Methods_ : `GET, PUT, PATCH, DELETE`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Management Team Member`
-  - To manage the event details by management.
+  - To manage the service details by management.
 
-- `/api/v1/event/`
+- `/api/v1/service/`
   - _Allowed Methods_ : `GET, POST`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Sales Team Member`
   - To create contract by sales team member.
-  - To get details of all the events.
-- `/api/v1/event/{id}`
+  - To get details of all the services.
+- `/api/v1/service/{id}`
   - _Allowed Methods_ : `GET, POST, PUT, PATCH, DELETE`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Sales Team Member`
-  - To edit event details.
-  - To get details of a particular event.
-  - To delete event details.
+  - To edit service details.
+  - To get details of a particular service.
+  - To delete service details.
 
-#### To manage events By Support
-- `/api/v1/support/event/`
+#### To manage services By Support
+- `/api/v1/support/service/`
   - _Allowed Methods_ : `GET`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Support Team Member`
-  - To get details of all event assigned to them.
+  - To get details of all service assigned to them.
 
-- `/api/v1/support/event/{id}/`
+- `/api/v1/support/service/{id}/`
   - _Allowed Methods_ : `GET, PUT, PATCH, DELETE`
   - `Authorisation`: `Bearer <token>` 
   - _Permissions_ : ` Support Team Member`
-  - To edit event details assigned to them.
-  - To get details of a particular event assigned to them.
-  - To delete event details assigned to them.
-
-## Postman Collection 
-
-
-> _link_ : https://www.getpostman.com/collections/aeed6ed66557d456aebf
+  - To edit service details assigned to them.
+  - To get details of a particular service assigned to them.
+  - To delete service details assigned to them.
 
