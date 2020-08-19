@@ -10,5 +10,5 @@ class ContractSerializer(serializers.ModelSerializer):
     sales_contact = UserSerializer(read_only=True)
     client = ClientSerializer(read_only=True)
     class Meta:
-        model=Contract
+        model=ContractModel
         fields='__all__'

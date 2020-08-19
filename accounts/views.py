@@ -184,7 +184,7 @@ class ClientManagementViewSet(CommonViewSet):
     authentication_classes = [JSONWebTokenAuthentication]
     serializer_class = ClientSerializer
     http_method_names = ['get', 'head', 'put', 'patch', 'delete']
-    queryset = Client.objects.filter(archived=False)
+    queryset = ClientModel.objects.filter(archived=False)
 
 class ClientViewSet(CommonViewSet):
     
@@ -196,7 +196,7 @@ class ClientViewSet(CommonViewSet):
     def get_queryset(self):
 
         # return self.request.user.CLIENTS.filter(archived=False)
-        return Client.objects.filter(archived=False)
+        return ClientModel.objects.filter(archived=False)
     def perform_create(self,serializer):
         serializer.save(sales_contact=self.request.user)
 

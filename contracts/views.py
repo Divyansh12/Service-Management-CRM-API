@@ -3,10 +3,7 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from accounts.models import *
-
 from accounts.permissions import *
-
-#Register API
 
 from rest_framework import viewsets,permissions,filters,views
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -37,12 +34,12 @@ class ContractManagementViewSet(CommonViewSet):
     authentication_classes = [JSONWebTokenAuthentication]
     serializer_class = ContractSerializer
     http_method_names = ['get', 'head', 'put', 'patch', 'delete']
-    queryset = Contract.objects.filter(archived=False)
+    queryset = ContractModel.objects.filter(archived=False)
 
     def perform_update(self,serializer):
         try:
             if(self.request.data['client']):
-                client = Client.objects.get(id=self.request.data['client'],archived=False)
+                client = ClientModel.objects.get(id=self.request.data['client'],archived=False)
                 serializer.save(client=client)
         except:
             print("Exception Occurred")
@@ -56,16 +53,14 @@ class ContractViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = ContractSerializer
     def get_queryset(self):
-        return Contract.objects.filter(archived=False)
+        return ContractModel.objects.filter(archived=False)
     def perform_create(self,serializer):
-        print(self.request.data)
-        client= Client.objects.get(id=self.request.data['client'],archived=False)
+        client= ClientModel.objects.get(id=self.request.data['client'],archived=False)
         serializer.save(client=client,sales_contact=self.request.user)
     def perform_update(self,serializer):
-        print(self.request.data)
         try:
             if(self.request.data['client']):
-                client = Client.objects.get(id=self.request.data['client'],archived=False)
+                client = ClientModel.objects.get(id=self.request.data['client'],archived=False)
                 serializer.save(client=client)
         except:
             print("Error")

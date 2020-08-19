@@ -19,20 +19,20 @@ class IsSupport(permissions.BasePermission):
     # group_name for super admin
     def has_permission(self, request, view):
         print(request.user)
-        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management == True or request.user.is_support == True or request.user.is_superuser) )
+        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management_team == True or request.user.is_support_team == True or request.user.is_superuser) )
 
 class IsSale(permissions.BasePermission):
     # group_name for super admin
     
     def has_permission(self, request, view):
         print(request.user)
-        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management == True or request.user.is_sale == True or request.user.is_superuser) )
+        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management_team == True or request.user.is_sale_team == True or request.user.is_superuser) )
 
 class IsManagement(permissions.BasePermission):
     # group_name for super admin
     def has_permission(self, request, view):
         print(request.user)
-        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management == True or request.user.is_superuser == True) )
+        return bool((request.user and request.user.is_authenticated and (not(request.user.archived))) and (request.user.is_management_team == True or request.user.is_superuser == True) )
 
     
 class AllowNone(permissions.BasePermission):

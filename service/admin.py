@@ -9,7 +9,7 @@ from django.apps import apps
 # from django.apps import apps
 # from .models import CustomUser,EventType,Event,Total,Participated,Team,Teammate,TeamParticipated
 
-app = apps.get_app_config('events')
+app = apps.get_app_config('service')
 
 for model_name, model in app.models.items():
     model_admin = type(model_name + "Admin", (admin.ModelAdmin, ), {'list_display': tuple([field.name for field in model._meta.fields])})

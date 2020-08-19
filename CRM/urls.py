@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('api/v1/',include('accounts.urls')),
     path('api/v1/',include('contracts.urls')),
-    path('api/v1/',include('events.urls')),
+    path('api/v1/',include('service.urls')),
 
 
 ]

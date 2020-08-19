@@ -7,17 +7,17 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ('id','username','email','first_name','last_name','is_support','is_management','is_sale')
+        fields = ('id','username','email','first_name','last_name','is_support_team','is_management_team','is_sale_team')
 #Register Serializer
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ('id','username','email','password','first_name','last_name','is_support','is_management','is_sale')
+        fields = ('id','username','email','password','first_name','last_name','is_support_team','is_management_team','is_sale_team')
         extra_kwargs={'password':{'write_only':True}}
 
     def create(self,validated_data):
-        user = UserModel.objects.create_user(username=validated_data['username'],email=validated_data['email'],first_name=validated_data['first_name'],last_name=validated_data['last_name'],password=validated_data['password'],is_support=validated_data['is_support'],is_management=validated_data['is_management'],is_sale=validated_data['is_sale'])
+        user = UserModel.objects.create_user(username=validated_data['username'],email=validated_data['email'],first_name=validated_data['first_name'],last_name=validated_data['last_name'],password=validated_data['password'],is_support=validated_data['is_support_team'],is_management=validated_data['is_management_team'],is_sale=validated_data['is_sale_team'])
         return user
 
 #Login Users
@@ -58,5 +58,5 @@ class ChangePasswordSerializer(serializers.Serializer):
 class ClientSerializer(serializers.ModelSerializer):
     sales_contact = UserSerializer(read_only=True)
     class Meta:
-        model=Client
+        model=ClientModel
         fields='__all__'

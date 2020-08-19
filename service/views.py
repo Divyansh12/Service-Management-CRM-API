@@ -31,12 +31,12 @@ class CommonViewSet(viewsets.ModelViewSet):
 			extra = [permission() for permission in self.extra_permissions]
 		return [permission() for permission in self.permission_classes]+extra
 
-class EventManagementViewSet(CommonViewSet):
+class ServiceManagementViewSet(CommonViewSet):
     permission_classes = [ IsManagement ]
     authentication_classes = [JSONWebTokenAuthentication]
-    serializer_class = EventSerializer
+    serializer_class = ServiceSerializer
     http_method_names = ['get', 'head', 'put', 'patch', 'delete']
-    queryset = Events.objects.filter(archived=False)
+    queryset = Service.objects.filter(archived=False)
 
     def perform_update(self,serializer):
         print(self.request.data)
@@ -44,7 +44,7 @@ class EventManagementViewSet(CommonViewSet):
             support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True,archived=False)
 
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(support_contact=support, contract=contract)
             except:
@@ -55,7 +55,7 @@ class EventManagementViewSet(CommonViewSet):
         except:
             print("Support Contact Not provided")
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(contract=contract)
             except:
@@ -64,14 +64,14 @@ class EventManagementViewSet(CommonViewSet):
         finally:
             serializer.save()
 
-class EventViewSet(CommonViewSet):
+class ServiceViewSet(CommonViewSet):
     
     permission_classes=[
         IsSale
     ]
-    serializer_class = EventSerializer
+    serializer_class = ServiceSerializer
     def get_queryset(self):
-        return Events.objects.filter(archived=False)
+        return Service.objects.filter(archived=False)
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -91,7 +91,7 @@ class EventViewSet(CommonViewSet):
             return {"details":"'contract' field is required"}, status.HTTP_400_BAD_REQUEST
         
         try:
-            contract = Contract.objects.get(id=self.request.data['contract'],archived=False)
+            contract = ContractModel.objects.get(id=self.request.data['contract'],archived=False)
         except:
             return {"details":"Contract is archived"}, status.HTTP_400_BAD_REQUEST
 
@@ -110,7 +110,7 @@ class EventViewSet(CommonViewSet):
             support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True,archived=False)
 
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(support_contact=support, contract=contract)
             except:
@@ -121,7 +121,7 @@ class EventViewSet(CommonViewSet):
         except:
             print("Support Contact Not provided")
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(contract=contract)
             except:
@@ -132,23 +132,23 @@ class EventViewSet(CommonViewSet):
 
 
 
-class SupportEventViewSet(CommonViewSet):
+class SupportServiceViewSet(CommonViewSet):
     
     permission_classes=[
         IsSupport
     ]
-    serializer_class = EventSerializer
+    serializer_class = ServiceSerializer
     http_method_names = ['get', 'head', 'put', 'patch', 'delete']
 
     def get_queryset(self):
-        return  self.request.user.Support_Events.filter(archived=False)   
+        return  self.request.user.Support_Services.filter(archived=False)   
     def perform_update(self,serializer):
         print(self.request.data)
         try: 
             support= UserModel.objects.get(id=self.request.data['support_contact'],is_support=True,archived=False)
 
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(support_contact=support, contract=contract)
             except:
@@ -159,7 +159,7 @@ class SupportEventViewSet(CommonViewSet):
         except:
             print("Support Contact Not provided")
             try:
-                contract= Contract.objects.get(id=self.request.data['contract'],archived=False)
+                contract= ContractModel.objects.get(id=self.request.data['contract'],archived=False)
             
                 serializer.save(contract=contract)
             except:
