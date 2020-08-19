@@ -2,7 +2,7 @@
 
 ### About
 
-API to manage the customers relationship which purchase any service from a company. The sales team can create a contract for customer and assign the required service/s to the contract. And support team can contact the customer to provide support related to that service.
+It is an API to manage the customer's relationship which purchases any service from a company. The sales team can create a contract for the customer and assign the required service/s to the contract. And support team can contact the customer to provide support related to that service. Meanwhile, management can control the functioning of all employees.
 
 ### Setup
 
